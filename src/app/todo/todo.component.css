@@ -1,0 +1,16 @@
+.to-do-app {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.cross-todo {
+  margin-left: auto;
+}
+
+.flexbox-list-container {
+  display: flex;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}

@@ -1,0 +1,41 @@
+<section class="to-do-app">
+  <h3>To Do List</h3>
+  <form #form="ngForm"  [formGroup]="todoForm" >
+    <input type="hidden" formControlName="id" />
+    <mat-form-field>
+      <input matInput placeholder="What needs to be done?"
+             autofocus="" formControlName="title" (keyup.enter)="addTodo()" (blur)="resetForm()">
+    </mat-form-field>
+  </form>
+
+  <app-filter *ngIf="todos.length || completeTodos.length"></app-filter>
+
+  <mat-nav-list >
+    <mat-list-item *ngFor="let todo of todos" class="flexbox-list-container" >
+
+      <input type="checkbox" (click)="markTodoComplete(todo)" [(ngModel)]="todo.completed">
+
+      <span > {{todo.title}}  </span>
+
+      <button mat-button class="cross-todo" (click)="deleteTodo(todo)">X</button>
+      <button mat-button (click)="editTodo(todo)">Edit</button>
+    </mat-list-item>
+  </mat-nav-list>
+
+  <hr *ngIf="completeTodos.length && todos.length"/>
+  <p *ngIf="completeTodos.length"> {{completeTodos.length}} {{completeTodos.length == 1 ? 'Task' : 'Tasks'}} completed:</p>
+
+  <mat-nav-list >
+    <mat-list-item *ngFor="let todo of completeTodos" class="flexbox-list-container" >
+
+      <input type="checkbox" (click)="markTodoComplete(todo)" [(ngModel)]="todo.completed">
+      <span [ngClass]="{'strikethrough': todo.completed}"> {{todo.title}}  </span>
+
+      <button mat-button class="cross-todo" (click)="deleteTodo(todo)">X</button>
+      <button mat-button (click)="editTodo(todo)">Edit</button>
+
+    </mat-list-item>
+  </mat-nav-list>
+
+
+</section>
